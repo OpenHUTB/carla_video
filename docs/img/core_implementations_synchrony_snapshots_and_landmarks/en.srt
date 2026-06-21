@@ -1,0 +1,1139 @@
+1
+00:00:07,490 --> 00:00:11,270
+hi welcome to the core futures talk
+
+2
+00:00:11,270 --> 00:00:14,580
+excel lovin and me burn apena
+
+3
+00:00:14,580 --> 00:00:17,099
+we are engineers of the karla team and
+
+4
+00:00:17,099 --> 00:00:20,099
+we are going to talk about about
+
+5
+00:00:20,099 --> 00:00:23,010
+synchronous mode of it works and what is
+
+6
+00:00:23,010 --> 00:00:25,650
+the pixel at that time also why would
+
+7
+00:00:25,650 --> 00:00:29,000
+the concept of world as an app shop some
+
+8
+00:00:29,000 --> 00:00:33,379
+new concept and also some app extensions
+
+9
+00:00:33,379 --> 00:00:37,829
+that axel will will explain related to
+
+10
+00:00:37,829 --> 00:00:41,219
+waypoints and new function new classes
+
+11
+00:00:41,219 --> 00:00:44,940
+like Junction and landmark so let's
+
+12
+00:00:44,940 --> 00:00:46,680
+start with the synchronous and
+
+13
+00:00:46,680 --> 00:00:50,610
+asynchronous mode the synchronous mode
+
+14
+00:00:50,610 --> 00:00:52,640
+is the default one
+
+15
+00:00:52,640 --> 00:00:57,030
+so is the where we have the server that
+
+16
+00:00:57,030 --> 00:01:01,230
+it has the mine loop to create us as
+
+17
+00:01:01,230 --> 00:01:04,470
+many frames as he can as fast as he can
+
+18
+00:01:04,470 --> 00:01:07,530
+also and the clients will wait for the
+
+19
+00:01:07,530 --> 00:01:11,520
+friends to come but the server will not
+
+20
+00:01:11,520 --> 00:01:13,890
+wait for the client so the client needs
+
+21
+00:01:13,890 --> 00:01:16,439
+to make fast calculations because the
+
+22
+00:01:16,439 --> 00:01:19,560
+friends will will come one after the
+
+23
+00:01:19,560 --> 00:01:22,170
+other and sometimes when the client
+
+24
+00:01:22,170 --> 00:01:25,259
+needs to make complex calculations this
+
+25
+00:01:25,259 --> 00:01:28,350
+is not a good way of doing because the
+
+26
+00:01:28,350 --> 00:01:31,439
+client can skip frames and for that we
+
+27
+00:01:31,439 --> 00:01:34,290
+have the synchronous mode this one where
+
+28
+00:01:34,290 --> 00:01:36,420
+one of the clients for example the
+
+29
+00:01:36,420 --> 00:01:39,509
+client to is the one who has the mine
+
+30
+00:01:39,509 --> 00:01:42,000
+loop for the creation of the map their
+
+31
+00:01:42,000 --> 00:01:45,299
+frames and the server it's just waiting
+
+32
+00:01:45,299 --> 00:01:48,869
+for the tick that the client needs to
+
+33
+00:01:48,869 --> 00:01:52,829
+call and then when they call the client
+
+34
+00:01:52,829 --> 00:01:55,649
+called the tick the server will simulate
+
+35
+00:01:55,649 --> 00:02:00,270
+one frame and then wait again also the
+
+36
+00:02:00,270 --> 00:02:02,310
+other clients are waiting for the frames
+
+37
+00:02:02,310 --> 00:02:05,219
+and only one client is the one in charge
+
+38
+00:02:05,219 --> 00:02:08,179
+of doing the ethic so this is very
+
+39
+00:02:08,179 --> 00:02:10,829
+useful if the client to needs to make
+
+40
+00:02:10,829 --> 00:02:14,760
+some slow calculations one frame by one
+
+41
+00:02:14,760 --> 00:02:17,580
+frame so the server will wait
+
+42
+00:02:17,580 --> 00:02:21,390
+but for this mode to work properly we
+
+43
+00:02:21,390 --> 00:02:24,050
+need to define the fixed set Delta time
+
+44
+00:02:24,050 --> 00:02:26,940
+this is the time that the server will
+
+45
+00:02:26,940 --> 00:02:29,640
+simulate in each frame because the
+
+46
+00:02:29,640 --> 00:02:32,640
+server will wait for the terminate time
+
+47
+00:02:32,640 --> 00:02:36,480
+so he cannot know how much time to take
+
+48
+00:02:36,480 --> 00:02:40,920
+for the frame so we have to define so by
+
+49
+00:02:40,920 --> 00:02:44,120
+default 20 frames we are using these
+
+50
+00:02:44,120 --> 00:02:47,820
+these fixed Delta time that means that
+
+51
+00:02:47,820 --> 00:02:55,350
+50 milliseconds okay so how we do this
+
+52
+00:02:55,350 --> 00:02:59,160
+in source we need to connect to the
+
+53
+00:02:59,160 --> 00:03:04,290
+server and get the wall and then from
+
+54
+00:03:04,290 --> 00:03:06,030
+the wall we have the method to get
+
+55
+00:03:06,030 --> 00:03:09,090
+settings that will get will give us the
+
+56
+00:03:09,090 --> 00:03:11,880
+current settings and the synchronous
+
+57
+00:03:11,880 --> 00:03:15,210
+mode is a volley on if it's true or we
+
+58
+00:03:15,210 --> 00:03:18,300
+set as true then we are in synchronous
+
+59
+00:03:18,300 --> 00:03:20,910
+mode otherwise in a synchronous mode
+
+60
+00:03:20,910 --> 00:03:23,580
+also if we set the synchronous mode we
+
+61
+00:03:23,580 --> 00:03:25,790
+have to define the fixed Delta seconds
+
+62
+00:03:25,790 --> 00:03:29,310
+for example here 420 frames per second
+
+63
+00:03:29,310 --> 00:03:33,420
+and then we apply the settings from this
+
+64
+00:03:33,420 --> 00:03:35,640
+time because we are in synchronous mode
+
+65
+00:03:35,640 --> 00:03:39,330
+one of the clients will need to make the
+
+66
+00:03:39,330 --> 00:03:43,380
+world tick and the other clients if
+
+67
+00:03:43,380 --> 00:03:46,490
+there are more just wait for the tick
+
+68
+00:03:46,490 --> 00:03:49,530
+[Music]
+
+69
+00:03:49,530 --> 00:03:52,569
+okay the future work is to work on a
+
+70
+00:03:52,569 --> 00:03:54,459
+truly multi client synchronous mode
+
+71
+00:03:54,459 --> 00:03:57,310
+because right now only one client is in
+
+72
+00:03:57,310 --> 00:04:01,269
+charge of magnetic for the server but we
+
+73
+00:04:01,269 --> 00:04:03,819
+need that it several waits for all the
+
+74
+00:04:03,819 --> 00:04:06,640
+clients to do they take so that is
+
+75
+00:04:06,640 --> 00:04:10,629
+something we are working on now we are
+
+76
+00:04:10,629 --> 00:04:13,870
+going to see the wall a snapshot the
+
+77
+00:04:13,870 --> 00:04:16,239
+wall is nap shot is like a stick capture
+
+78
+00:04:16,239 --> 00:04:18,850
+of the of the scene of the H frame and
+
+79
+00:04:18,850 --> 00:04:22,090
+we have some properties like the ID of
+
+80
+00:04:22,090 --> 00:04:27,340
+the new frame the frame count and also
+
+81
+00:04:27,340 --> 00:04:29,470
+sometimes the lapse at times is the time
+
+82
+00:04:29,470 --> 00:04:31,690
+from the start of the simulation the
+
+83
+00:04:31,690 --> 00:04:34,169
+Delta seconds is the time from the last
+
+84
+00:04:34,169 --> 00:04:37,270
+frame the previous frame and platform
+
+85
+00:04:37,270 --> 00:04:40,110
+timestamp is the timestamp from the
+
+86
+00:04:40,110 --> 00:04:44,260
+operating system and also for all the
+
+87
+00:04:44,260 --> 00:04:47,440
+actors we have in the scene we have an
+
+88
+00:04:47,440 --> 00:04:50,830
+actor in snapshot an actor a snapshot we
+
+89
+00:04:50,830 --> 00:04:53,410
+have some other properties like the idea
+
+90
+00:04:53,410 --> 00:04:56,110
+of the actor and also some methods to
+
+91
+00:04:56,110 --> 00:04:57,850
+get the position or rotation the
+
+92
+00:04:57,850 --> 00:04:59,830
+velocity angular velocity acceleration
+
+93
+00:04:59,830 --> 00:05:03,789
+and also we have an estate that this
+
+94
+00:05:03,789 --> 00:05:06,340
+instructor that in function of the kind
+
+95
+00:05:06,340 --> 00:05:11,160
+the type of actor we have for actors
+
+96
+00:05:11,160 --> 00:05:13,870
+then the state will have some properties
+
+97
+00:05:13,870 --> 00:05:17,320
+or others so these are the properties
+
+98
+00:05:17,320 --> 00:05:19,690
+for for example a vehicle we have a
+
+99
+00:05:19,690 --> 00:05:23,110
+control with all the controls that are
+
+100
+00:05:23,110 --> 00:05:26,200
+applied in that frame and also a speed
+
+101
+00:05:26,200 --> 00:05:28,389
+limit if the vehicle has some speed
+
+102
+00:05:28,389 --> 00:05:31,419
+limit applied apply it also for the
+
+103
+00:05:31,419 --> 00:05:35,050
+traffic light and if it is the case the
+
+104
+00:05:35,050 --> 00:05:37,479
+traffic light ID and also the state
+
+105
+00:05:37,479 --> 00:05:41,440
+cannot see also for the Walker we have
+
+106
+00:05:41,440 --> 00:05:43,690
+the direction they are moving on the
+
+107
+00:05:43,690 --> 00:05:47,050
+speed or so if the jump command is
+
+108
+00:05:47,050 --> 00:05:50,200
+enabled in that frame and for the
+
+109
+00:05:50,200 --> 00:05:52,570
+traffic light we have the sign ID this
+
+110
+00:05:52,570 --> 00:05:55,360
+is the identification that comes from
+
+111
+00:05:55,360 --> 00:05:57,020
+the open drive so we can
+
+112
+00:05:57,020 --> 00:06:00,319
+relate one with the other also we have
+
+113
+00:06:00,319 --> 00:06:04,250
+the configuration of times 4-h state the
+
+114
+00:06:04,250 --> 00:06:07,069
+Pauline Dex is if the traffic light is
+
+115
+00:06:07,069 --> 00:06:10,129
+inside the group to know which is the
+
+116
+00:06:10,129 --> 00:06:14,240
+the index inside the group and also we
+
+117
+00:06:14,240 --> 00:06:17,870
+have the state for the traffic signs we
+
+118
+00:06:17,870 --> 00:06:22,729
+have only the IV from the open drive so
+
+119
+00:06:22,729 --> 00:06:26,680
+in code we can get the wallet snapshot
+
+120
+00:06:26,680 --> 00:06:30,080
+for example if we weigh wait for a tick
+
+121
+00:06:30,080 --> 00:06:32,930
+then we will get automatically the
+
+122
+00:06:32,930 --> 00:06:35,330
+wallah snapshot but we can get the wall
+
+123
+00:06:35,330 --> 00:06:37,479
+snapshot with this method at any time
+
+124
+00:06:37,479 --> 00:06:40,430
+and also if we are in a call back
+
+125
+00:06:40,430 --> 00:06:44,000
+waiting for on tick then we get the wall
+
+126
+00:06:44,000 --> 00:06:47,599
+snapshot as a parameter and also for the
+
+127
+00:06:47,599 --> 00:06:51,139
+actor a snapshot we have two methods in
+
+128
+00:06:51,139 --> 00:06:53,690
+the world snapshot we have hot actor if
+
+129
+00:06:53,690 --> 00:06:56,060
+that actor exists in the world snapshot
+
+130
+00:06:56,060 --> 00:06:58,849
+and if that is the case we can use the
+
+131
+00:06:58,849 --> 00:06:59,590
+fine
+
+132
+00:06:59,590 --> 00:07:02,120
+to get the actors nap shot of that
+
+133
+00:07:02,120 --> 00:07:07,610
+doctor and now axel will talk about the
+
+134
+00:07:07,610 --> 00:07:14,240
+new IP extensions this part of the
+
+135
+00:07:14,240 --> 00:07:17,120
+presentation I will talk about some of
+
+136
+00:07:17,120 --> 00:07:19,370
+the extensions that have been done to
+
+137
+00:07:19,370 --> 00:07:23,810
+the Python API so I will turn around
+
+138
+00:07:23,810 --> 00:07:26,630
+three topics first about the weapons
+
+139
+00:07:26,630 --> 00:07:30,199
+type extensions the new class Junction
+
+140
+00:07:30,199 --> 00:07:33,289
+and the new class number which is a way
+
+141
+00:07:33,289 --> 00:07:37,150
+to support open drive signals
+
+142
+00:07:38,130 --> 00:07:41,130
+so first of all a quick reminder of what
+
+143
+00:07:41,130 --> 00:07:42,270
+the weapon is
+
+144
+00:07:42,270 --> 00:07:45,030
+so it represents at elected point in the
+
+145
+00:07:45,030 --> 00:07:48,390
+road so you have this particular Lane
+
+146
+00:07:48,390 --> 00:07:51,060
+you have a very pointing in this
+
+147
+00:07:51,060 --> 00:07:54,120
+location so we left with the direction
+
+148
+00:07:54,120 --> 00:07:57,990
+of the of the traffic in this point the
+
+149
+00:07:57,990 --> 00:08:00,300
+last query wrote informations just
+
+150
+00:08:00,300 --> 00:08:04,860
+rotate the lanes cetera and the function
+
+151
+00:08:04,860 --> 00:08:07,140
+next is available to you to traverse
+
+152
+00:08:07,140 --> 00:08:11,070
+this the map in the direction of the
+
+153
+00:08:11,070 --> 00:08:12,450
+traffic so you can move in this
+
+154
+00:08:12,450 --> 00:08:16,740
+direction it is an abstraction so that
+
+155
+00:08:16,740 --> 00:08:18,680
+you don't need to worry about
+
+156
+00:08:18,680 --> 00:08:21,600
+complicated geometry and so on that may
+
+157
+00:08:21,600 --> 00:08:27,210
+be you know in in the open drive file so
+
+158
+00:08:27,210 --> 00:08:29,520
+to expand upon this previously you could
+
+159
+00:08:29,520 --> 00:08:32,190
+only use the function next to move
+
+160
+00:08:32,190 --> 00:08:34,289
+through the road soon which meant that
+
+161
+00:08:34,289 --> 00:08:37,349
+you could only move forward now we have
+
+162
+00:08:37,349 --> 00:08:39,539
+added the possibility to move backwards
+
+163
+00:08:39,539 --> 00:08:42,780
+through the previous function similar to
+
+164
+00:08:42,780 --> 00:08:45,120
+next you can enter the previous in a
+
+165
+00:08:45,120 --> 00:08:47,580
+certain amount certain distance and you
+
+166
+00:08:47,580 --> 00:08:51,570
+will get a new weapon corresponding to
+
+167
+00:08:51,570 --> 00:08:54,620
+that is the distance you need
+
+168
+00:08:54,620 --> 00:08:57,310
+also we have added some helper functions
+
+169
+00:08:57,310 --> 00:09:00,320
+next until a man's players and too late
+
+170
+00:09:00,320 --> 00:09:03,560
+start these give you a set of these all
+
+171
+00:09:03,560 --> 00:09:06,020
+these waypoints in a single call which
+
+172
+00:09:06,020 --> 00:09:08,540
+is you get way constant at the end of
+
+173
+00:09:08,540 --> 00:09:13,820
+the particular lane or until distant we
+
+174
+00:09:13,820 --> 00:09:15,670
+have also added the possibility to
+
+175
+00:09:15,670 --> 00:09:18,620
+quality to take away points using open
+
+176
+00:09:18,620 --> 00:09:20,600
+drive information such as go outside the
+
+177
+00:09:20,600 --> 00:09:23,710
+lanes ID
+
+178
+00:09:25,800 --> 00:09:28,590
+they will have the new class junction
+
+179
+00:09:28,590 --> 00:09:33,870
+which is represent an intersection in
+
+180
+00:09:33,870 --> 00:09:34,700
+the map
+
+181
+00:09:34,700 --> 00:09:42,000
+lanes split verge intersections etc so
+
+182
+00:09:42,000 --> 00:09:43,890
+it first some materials the first one is
+
+183
+00:09:43,890 --> 00:09:47,010
+the idea of this of the junction which
+
+184
+00:09:47,010 --> 00:09:49,670
+corresponds to the of the drive file
+
+185
+00:09:49,670 --> 00:09:52,470
+then there is the bounding box this is
+
+186
+00:09:52,470 --> 00:09:55,410
+the area that this Junction is taking in
+
+187
+00:09:55,410 --> 00:09:58,410
+the in the map so you can use this to
+
+188
+00:09:58,410 --> 00:10:00,930
+query whether there is an object within
+
+189
+00:10:00,930 --> 00:10:04,050
+inside an obstacle on another vehicle
+
+190
+00:10:04,050 --> 00:10:07,950
+etc then we have the function get
+
+191
+00:10:07,950 --> 00:10:11,130
+weapons which this function returns a
+
+192
+00:10:11,130 --> 00:10:15,020
+pair of waypoints for every lane in the
+
+193
+00:10:15,020 --> 00:10:18,150
+in a junction so they have the initial
+
+194
+00:10:18,150 --> 00:10:20,930
+position and the final position of the
+
+195
+00:10:20,930 --> 00:10:24,510
+of a particular lane in a junction this
+
+196
+00:10:24,510 --> 00:10:28,970
+allows you to guess the connectivity of
+
+197
+00:10:28,970 --> 00:10:35,060
+the roads wire is a real name connected
+
+198
+00:10:36,450 --> 00:10:39,330
+and you can get this Junction object
+
+199
+00:10:39,330 --> 00:10:42,830
+using the weapon so from a particular
+
+200
+00:10:42,830 --> 00:10:46,380
+point that is within a junction this
+
+201
+00:10:46,380 --> 00:10:48,600
+function will return you the
+
+202
+00:10:48,600 --> 00:10:53,880
+corresponding object finally we move to
+
+203
+00:10:53,880 --> 00:10:58,380
+the new class landmark so this is a way
+
+204
+00:10:58,380 --> 00:11:00,960
+to support open drive signals where it's
+
+205
+00:11:00,960 --> 00:11:02,280
+stopped here
+
+206
+00:11:02,280 --> 00:11:07,400
+traffic lights etc this is a way to
+
+207
+00:11:07,400 --> 00:11:10,400
+query the open drive signal record and
+
+208
+00:11:10,400 --> 00:11:16,260
+extract this information so the new
+
+209
+00:11:16,260 --> 00:11:19,020
+class lemak has several functions and
+
+210
+00:11:19,020 --> 00:11:20,760
+they are detailed in the documentation
+
+211
+00:11:20,760 --> 00:11:23,010
+here I provide some of the most
+
+212
+00:11:23,010 --> 00:11:25,790
+important ones the first one is the ID
+
+213
+00:11:25,790 --> 00:11:29,070
+the idea of a landmark response to the
+
+214
+00:11:29,070 --> 00:11:32,700
+signal ID to the ID of the corresponding
+
+215
+00:11:32,700 --> 00:11:36,120
+signal in open Drive notice that there
+
+216
+00:11:36,120 --> 00:11:39,030
+may be multiple landmarks with the same
+
+217
+00:11:39,030 --> 00:11:42,090
+ID which means that a particular signal
+
+218
+00:11:42,090 --> 00:11:44,670
+is having an effect in different places
+
+219
+00:11:44,670 --> 00:11:47,960
+in more than one road
+
+220
+00:11:49,240 --> 00:11:52,930
+then we have the type which is this
+
+221
+00:11:52,930 --> 00:11:55,600
+identifies whether a signal is stop and
+
+222
+00:11:55,600 --> 00:11:59,920
+yield traffic light etc the underlying
+
+223
+00:11:59,920 --> 00:12:02,440
+type is a string which means that you
+
+224
+00:12:02,440 --> 00:12:06,160
+can use a different country code if a
+
+225
+00:12:06,160 --> 00:12:09,820
+custom country code signal code and you
+
+226
+00:12:09,820 --> 00:12:12,880
+can and this class will still gather
+
+227
+00:12:12,880 --> 00:12:15,040
+this information that is up to you to
+
+228
+00:12:15,040 --> 00:12:18,670
+the tag with signal is a stop whatever
+
+229
+00:12:18,670 --> 00:12:23,110
+type in your in your custom code then we
+
+230
+00:12:23,110 --> 00:12:24,580
+have the transform which is the physical
+
+231
+00:12:24,580 --> 00:12:29,440
+position of the signal now we will have
+
+232
+00:12:29,440 --> 00:12:31,600
+the lane Bali dysfunction which this
+
+233
+00:12:31,600 --> 00:12:34,870
+returns a list of all those lanes with
+
+234
+00:12:34,870 --> 00:12:39,640
+which this particular signal is taking
+
+235
+00:12:39,640 --> 00:12:43,560
+effect in a particular Road
+
+236
+00:12:44,650 --> 00:12:47,750
+then we'll have the how to query for
+
+237
+00:12:47,750 --> 00:12:50,630
+this llamas how to obtain them so one
+
+238
+00:12:50,630 --> 00:12:53,630
+way is through the weapons so for a
+
+239
+00:12:53,630 --> 00:12:55,490
+particular position in the map you can
+
+240
+00:12:55,490 --> 00:12:58,730
+get a weapon here and search for
+
+241
+00:12:58,730 --> 00:13:02,120
+landmarks within a certain range then
+
+242
+00:13:02,120 --> 00:13:04,550
+for you get a list with all this
+
+243
+00:13:04,550 --> 00:13:07,190
+knowledge that you have found and you
+
+244
+00:13:07,190 --> 00:13:10,100
+can do whatever you need you can look
+
+245
+00:13:10,100 --> 00:13:14,780
+for landmarks for any type or just
+
+246
+00:13:14,780 --> 00:13:19,970
+filtering with a particular type here is
+
+247
+00:13:19,970 --> 00:13:23,150
+this an example of this so you just get
+
+248
+00:13:23,150 --> 00:13:27,080
+a waypoint everyone then search for
+
+249
+00:13:27,080 --> 00:13:29,240
+landmarks within a distance in this case
+
+250
+00:13:29,240 --> 00:13:32,030
+with the meters and then for the
+
+251
+00:13:32,030 --> 00:13:35,270
+resulting list of landmarks you can
+
+252
+00:13:35,270 --> 00:13:39,110
+search with its top and then do whatever
+
+253
+00:13:39,110 --> 00:13:41,120
+behavior you want to implement it's a
+
+254
+00:13:41,120 --> 00:13:45,080
+stop sign or if you want you can expand
+
+255
+00:13:45,080 --> 00:13:47,870
+this to support science or whatever to
+
+256
+00:13:47,870 --> 00:13:49,760
+support the deals or whatever other
+
+257
+00:13:49,760 --> 00:13:53,260
+traffic sign that you
+
+258
+00:13:54,259 --> 00:13:57,240
+then we have some other functions to
+
+259
+00:13:57,240 --> 00:13:59,430
+obtain the landmarks such as get our
+
+260
+00:13:59,430 --> 00:14:02,310
+landmarks in catalan up this allows you
+
+261
+00:14:02,310 --> 00:14:05,040
+to retrieve all the landmarks that are
+
+262
+00:14:05,040 --> 00:14:09,690
+defined in the open data file and you
+
+263
+00:14:09,690 --> 00:14:11,970
+can do the same called filtering my type
+
+264
+00:14:11,970 --> 00:14:15,420
+which means you can get all the all the
+
+265
+00:14:15,420 --> 00:14:18,740
+stops in the map with a single call or
+
+266
+00:14:18,740 --> 00:14:22,170
+from an ID which means you want to get
+
+267
+00:14:22,170 --> 00:14:25,430
+all the landmarks corresponding to a
+
+268
+00:14:25,430 --> 00:14:29,579
+particular traffic sign which is all the
+
+269
+00:14:29,579 --> 00:14:31,889
+places where this signal is taking an
+
+270
+00:14:31,889 --> 00:14:35,430
+effect and finally there is the
+
+271
+00:14:35,430 --> 00:14:38,730
+connection with the simulation so from a
+
+272
+00:14:38,730 --> 00:14:41,880
+landmark so the landmarks represents the
+
+273
+00:14:41,880 --> 00:14:45,209
+open drive signal record and then we
+
+274
+00:14:45,209 --> 00:14:47,250
+want to retrieve the corresponding
+
+275
+00:14:47,250 --> 00:14:50,220
+object in the simulation for instance a
+
+276
+00:14:50,220 --> 00:14:51,990
+traffic light we want to retrieve a
+
+277
+00:14:51,990 --> 00:14:53,759
+traffic light that we have to type those
+
+278
+00:14:53,759 --> 00:14:57,029
+landmarks we want to call it state we
+
+279
+00:14:57,029 --> 00:14:58,860
+need to get the Kerala actor
+
+280
+00:14:58,860 --> 00:15:02,279
+corresponding to this traffic light so
+
+281
+00:15:02,279 --> 00:15:05,459
+this function get traffic light you can
+
+282
+00:15:05,459 --> 00:15:09,000
+get this actor inquiry but its screen or
+
+283
+00:15:09,000 --> 00:15:14,290
+how long it takes to turn right exactly
+
+284
+00:15:14,290 --> 00:15:16,850
+so this is for nap doesn't the show
+
+285
+00:15:16,850 --> 00:15:19,330
+thank you

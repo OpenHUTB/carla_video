@@ -1,0 +1,859 @@
+1
+00:00:05,520 --> 00:00:09,599
+hi carla users
+
+2
+00:00:07,279 --> 00:00:10,880
+this tutorial shows how to build carlina
+
+3
+00:00:09,599 --> 00:00:12,639
+linux system
+
+4
+00:00:10,880 --> 00:00:14,000
+there are two types of installation in
+
+5
+00:00:12,639 --> 00:00:15,920
+karla one
+
+6
+00:00:14,000 --> 00:00:17,840
+are the release packages self-contained
+
+7
+00:00:15,920 --> 00:00:19,279
+binaries that run a specific version of
+
+8
+00:00:17,840 --> 00:00:21,359
+the simulator
+
+9
+00:00:19,279 --> 00:00:24,000
+the other is to directly build carla
+
+10
+00:00:21,359 --> 00:00:26,000
+using the github repository
+
+11
+00:00:24,000 --> 00:00:28,080
+the build process is a bit more tricky
+
+12
+00:00:26,000 --> 00:00:28,720
+but it will allow you to run karla as a
+
+13
+00:00:28,080 --> 00:00:31,439
+developer
+
+14
+00:00:28,720 --> 00:00:33,440
+using the unreal engine editor the
+
+15
+00:00:31,439 --> 00:00:35,360
+simulator can be run normally using the
+
+16
+00:00:33,440 --> 00:00:39,120
+api and all the different features but
+
+17
+00:00:35,360 --> 00:00:39,120
+there are some additional possibilities
+
+18
+00:00:39,200 --> 00:00:43,040
+first the build can be updated anytime
+
+19
+00:00:41,280 --> 00:00:44,879
+to run with the latest additions made by
+
+20
+00:00:43,040 --> 00:00:46,879
+the developers so there is no need to
+
+21
+00:00:44,879 --> 00:00:48,800
+wait for a release
+
+22
+00:00:46,879 --> 00:00:50,960
+also the build makes for greater
+
+23
+00:00:48,800 --> 00:00:53,039
+customization options as the simulator
+
+24
+00:00:50,960 --> 00:00:54,719
+itself can be modified
+
+25
+00:00:53,039 --> 00:00:57,039
+this obviously requires having some
+
+26
+00:00:54,719 --> 00:00:58,800
+understanding of from real engine
+
+27
+00:00:57,039 --> 00:01:00,559
+if you are only interested in using the
+
+28
+00:00:58,800 --> 00:01:02,879
+released features it may not be
+
+29
+00:01:00,559 --> 00:01:04,479
+necessary for you to make the build
+
+30
+00:01:02,879 --> 00:01:05,920
+give it a thought to make it clear what
+
+31
+00:01:04,479 --> 00:01:07,680
+your intentions are
+
+32
+00:01:05,920 --> 00:01:09,200
+and then if you are interested in
+
+33
+00:01:07,680 --> 00:01:13,680
+working with the karla build
+
+34
+00:01:09,200 --> 00:01:15,439
+follow this tutorial
+
+35
+00:01:13,680 --> 00:01:17,680
+the build process is detailed in the
+
+36
+00:01:15,439 --> 00:01:19,119
+karla docs the easiest way to check it
+
+37
+00:01:17,680 --> 00:01:21,840
+out is going to our website
+
+38
+00:01:19,119 --> 00:01:24,240
+karla.org clicking on documentation and
+
+39
+00:01:21,840 --> 00:01:25,920
+going to the linux build page
+
+40
+00:01:24,240 --> 00:01:27,439
+during this tutorial we will follow this
+
+41
+00:01:25,920 --> 00:01:29,439
+page step by step
+
+42
+00:01:27,439 --> 00:01:31,759
+the index on top will allow you to visit
+
+43
+00:01:29,439 --> 00:01:33,600
+specific steps of the process
+
+44
+00:01:31,759 --> 00:01:35,520
+there is also a command summary right
+
+45
+00:01:33,600 --> 00:01:36,880
+before starting which contains all the
+
+46
+00:01:35,520 --> 00:01:38,479
+terminal commands used during the
+
+47
+00:01:36,880 --> 00:01:40,000
+installation
+
+48
+00:01:38,479 --> 00:01:41,520
+once you are familiar with the steps
+
+49
+00:01:40,000 --> 00:01:43,040
+this may save you some scrolling and
+
+50
+00:01:41,520 --> 00:01:44,399
+provide with a bigger picture of that
+
+51
+00:01:43,040 --> 00:01:46,320
+process
+
+52
+00:01:44,399 --> 00:01:48,159
+there is also frequently asked questions
+
+53
+00:01:46,320 --> 00:01:49,920
+page in the docs and any issues not
+
+54
+00:01:48,159 --> 00:01:50,720
+stated there can be solved using the
+
+55
+00:01:49,920 --> 00:01:54,240
+issues section
+
+56
+00:01:50,720 --> 00:01:56,079
+github or the carla for room before
+
+57
+00:01:54,240 --> 00:01:57,759
+starting make sure you read the minimum
+
+58
+00:01:56,079 --> 00:01:59,439
+requirements to make the build
+
+59
+00:01:57,759 --> 00:02:01,280
+if your system does not meet these
+
+60
+00:01:59,439 --> 00:02:02,880
+requirements remember that the release
+
+61
+00:02:01,280 --> 00:02:05,759
+packages are still an option to run the
+
+62
+00:02:02,880 --> 00:02:05,759
+karla simulator
+
+63
+00:02:06,880 --> 00:02:10,959
+first of all let's install the necessary
+
+64
+00:02:08,800 --> 00:02:12,000
+dependencies for carla and unreal engine
+
+65
+00:02:10,959 --> 00:02:14,239
+to run
+
+66
+00:02:12,000 --> 00:02:15,920
+this process is quite straightforward
+
+67
+00:02:14,239 --> 00:02:17,599
+copy and past a bunch of commands and
+
+68
+00:02:15,920 --> 00:02:18,800
+simply check that no error message
+
+69
+00:02:17,599 --> 00:02:20,319
+appears
+
+70
+00:02:18,800 --> 00:02:21,680
+the only thing to note here is that
+
+71
+00:02:20,319 --> 00:02:22,640
+there are some commands that change
+
+72
+00:02:21,680 --> 00:02:24,959
+depending on where
+
+73
+00:02:22,640 --> 00:02:26,160
+your system is ubuntu 18 or a previous
+
+74
+00:02:24,959 --> 00:02:27,680
+version
+
+75
+00:02:26,160 --> 00:02:32,239
+make sure to choose the ones that fit
+
+76
+00:02:27,680 --> 00:02:32,239
+your system which in my case is ubuntu
+
+77
+00:02:34,840 --> 00:02:37,840
+18
+
+78
+00:02:45,280 --> 00:02:48,959
+now that the dependencies have been
+
+79
+00:02:46,879 --> 00:02:51,040
+successfully installed there is one last
+
+80
+00:02:48,959 --> 00:02:53,120
+pre-requirement
+
+81
+00:02:51,040 --> 00:02:54,720
+in order to make the build we will clone
+
+82
+00:02:53,120 --> 00:02:57,440
+both carla and unreal engine
+
+83
+00:02:54,720 --> 00:03:00,000
+repositories available in github
+
+84
+00:02:57,440 --> 00:03:01,920
+that means you will need a github and an
+
+85
+00:03:00,000 --> 00:03:04,239
+unreal engine account
+
+86
+00:03:01,920 --> 00:03:04,959
+also as unreal engine repositories are
+
+87
+00:03:04,239 --> 00:03:08,080
+private
+
+88
+00:03:04,959 --> 00:03:09,040
+both accounts have to be linked it is no
+
+89
+00:03:08,080 --> 00:03:10,879
+headache
+
+90
+00:03:09,040 --> 00:03:12,720
+simply create the accounts and make sure
+
+91
+00:03:10,879 --> 00:03:15,040
+to activate them you should receive an
+
+92
+00:03:12,720 --> 00:03:16,959
+activation mail on the fly
+
+93
+00:03:15,040 --> 00:03:18,080
+once you have both accounts go to the
+
+94
+00:03:16,959 --> 00:03:20,239
+personal panel
+
+95
+00:03:18,080 --> 00:03:21,200
+in the unreal engine website click on
+
+96
+00:03:20,239 --> 00:03:23,840
+connections
+
+97
+00:03:21,200 --> 00:03:24,720
+and then accounts there should be an
+
+98
+00:03:23,840 --> 00:03:27,920
+option to connect
+
+99
+00:03:24,720 --> 00:03:33,840
+github and unreal engine accounts click
+
+100
+00:03:27,920 --> 00:03:33,840
+on it and sign in if necessary
+
+101
+00:03:36,879 --> 00:03:40,239
+it is time to finally start with the
+
+102
+00:03:38,720 --> 00:03:42,480
+build process
+
+103
+00:03:40,239 --> 00:03:44,400
+again this will be no headache just a
+
+104
+00:03:42,480 --> 00:03:47,680
+matter of copy pasting the commands that
+
+105
+00:03:44,400 --> 00:03:49,760
+appear in the docks first we will make
+
+106
+00:03:47,680 --> 00:03:52,159
+the build for unreal engine
+
+107
+00:03:49,760 --> 00:03:53,439
+this has nothing to do with carla the
+
+108
+00:03:52,159 --> 00:03:55,519
+simulator will run
+
+109
+00:03:53,439 --> 00:03:57,360
+using the unreal engine editor but
+
+110
+00:03:55,519 --> 00:03:59,680
+unreal engine is a much bigger thing
+
+111
+00:03:57,360 --> 00:04:02,239
+itself
+
+112
+00:03:59,680 --> 00:04:04,000
+clone the repository this shouldn't take
+
+113
+00:04:02,239 --> 00:04:06,799
+long and it will create a clone of the
+
+114
+00:04:04,000 --> 00:04:09,360
+github repository in your system
+
+115
+00:04:06,799 --> 00:04:11,439
+the path is stated last in the command
+
+116
+00:04:09,360 --> 00:04:12,799
+it can be changed but if you do so
+
+117
+00:04:11,439 --> 00:04:15,360
+make sure to change the following
+
+118
+00:04:12,799 --> 00:04:17,280
+commands accordingly
+
+119
+00:04:15,360 --> 00:04:19,280
+get into the directory to make sure that
+
+120
+00:04:17,280 --> 00:04:21,199
+it exists
+
+121
+00:04:19,280 --> 00:04:23,360
+now it is time to install a patch that
+
+122
+00:04:21,199 --> 00:04:24,880
+solves some visualization issues when
+
+123
+00:04:23,360 --> 00:04:27,520
+using vulkan
+
+124
+00:04:24,880 --> 00:04:29,280
+again inside the unreal engine directory
+
+125
+00:04:27,520 --> 00:04:32,320
+copy the commands to download the patch
+
+126
+00:04:29,280 --> 00:04:32,320
+file and apply it
+
+127
+00:04:35,840 --> 00:04:39,759
+finally it is time to make the build
+
+128
+00:04:38,080 --> 00:04:41,600
+this will take a long time probably
+
+129
+00:04:39,759 --> 00:04:42,960
+around an hour or two but it depends on
+
+130
+00:04:41,600 --> 00:04:45,040
+your system
+
+131
+00:04:42,960 --> 00:04:47,680
+run the command and go do other things
+
+132
+00:04:45,040 --> 00:04:47,680
+in the meantime
+
+133
+00:04:51,759 --> 00:04:55,360
+when the build is finished test unreal
+
+134
+00:04:53,840 --> 00:04:57,840
+engine to make sure that it runs
+
+135
+00:04:55,360 --> 00:04:58,400
+smoothly we will not dive deeply into
+
+136
+00:04:57,840 --> 00:05:00,000
+this
+
+137
+00:04:58,400 --> 00:05:03,520
+copy the command line to go to the
+
+138
+00:05:00,000 --> 00:05:05,440
+specified folder and run the editor
+
+139
+00:05:03,520 --> 00:05:06,639
+any errors that show during the build of
+
+140
+00:05:05,440 --> 00:05:08,479
+unreal engine have
+
+141
+00:05:06,639 --> 00:05:10,080
+more to do with unreal engine than with
+
+142
+00:05:08,479 --> 00:05:12,400
+carla you can create
+
+143
+00:05:10,080 --> 00:05:13,840
+an issue in our github site or ask for
+
+144
+00:05:12,400 --> 00:05:15,840
+help on the carla forum
+
+145
+00:05:13,840 --> 00:05:18,160
+but we can provide with limited support
+
+146
+00:05:15,840 --> 00:05:20,160
+here try asking on the unreal engine
+
+147
+00:05:18,160 --> 00:05:25,120
+forms directly if you have any issues
+
+148
+00:05:20,160 --> 00:05:27,520
+with the unreal engine build
+
+149
+00:05:25,120 --> 00:05:28,800
+okay now the time has come to finally
+
+150
+00:05:27,520 --> 00:05:30,639
+build carla
+
+151
+00:05:28,800 --> 00:05:32,320
+optionally before starting run the
+
+152
+00:05:30,639 --> 00:05:38,639
+following command line to download
+
+153
+00:05:32,320 --> 00:05:40,560
+area 2 and make the process a bit faster
+
+154
+00:05:38,639 --> 00:05:42,400
+once again copy and paste the commands
+
+155
+00:05:40,560 --> 00:05:44,320
+to clone the repository
+
+156
+00:05:42,400 --> 00:05:45,759
+remember that if you change the root or
+
+157
+00:05:44,320 --> 00:05:49,520
+the name of the directory
+
+158
+00:05:45,759 --> 00:05:49,520
+the following commands should be changed
+
+159
+00:05:50,840 --> 00:05:53,840
+accordingly
+
+160
+00:05:54,240 --> 00:05:58,319
+when the repository has been cloned get
+
+161
+00:05:56,319 --> 00:05:59,600
+into the root directory and download the
+
+162
+00:05:58,319 --> 00:06:01,840
+assets
+
+163
+00:05:59,600 --> 00:06:03,759
+these are stored separately to reduce
+
+164
+00:06:01,840 --> 00:06:05,919
+the size of the build
+
+165
+00:06:03,759 --> 00:06:08,160
+the assets downloaded with this command
+
+166
+00:06:05,919 --> 00:06:10,000
+are the latest stable assets
+
+167
+00:06:08,160 --> 00:06:11,360
+there is a way to download the latest
+
+168
+00:06:10,000 --> 00:06:13,680
+assets in development
+
+169
+00:06:11,360 --> 00:06:15,280
+explained in the updated carla page
+
+170
+00:06:13,680 --> 00:06:17,280
+though this is not recommended
+
+171
+00:06:15,280 --> 00:06:20,240
+unless there is a specific reason to do
+
+172
+00:06:17,280 --> 00:06:23,039
+so as these are still in development and
+
+173
+00:06:20,240 --> 00:06:24,800
+are not stable this download will take
+
+174
+00:06:23,039 --> 00:06:27,440
+some time so it is a good moment for a
+
+175
+00:06:24,800 --> 00:06:27,440
+coffee break
+
+176
+00:06:31,039 --> 00:06:49,840
+now set the environment variable so that
+
+177
+00:06:33,360 --> 00:06:49,840
+karla can find unreal engine
+
+178
+00:06:51,759 --> 00:06:55,360
+and finally make the build first the
+
+179
+00:06:54,400 --> 00:06:58,160
+client side
+
+180
+00:06:55,360 --> 00:06:58,720
+and then the server side this will take
+
+181
+00:06:58,160 --> 00:07:00,720
+long too
+
+182
+00:06:58,720 --> 00:07:04,479
+especially the server side so you can
+
+183
+00:07:00,720 --> 00:07:04,479
+rest for now this is almost over
+
+184
+00:07:11,039 --> 00:07:14,160
+when the simulator starts it will look
+
+185
+00:07:13,199 --> 00:07:16,000
+gray and dull
+
+186
+00:07:14,160 --> 00:07:18,960
+leave it there for a while as shaders
+
+187
+00:07:16,000 --> 00:07:20,479
+etc have to be compiled yet
+
+188
+00:07:18,960 --> 00:07:22,960
+one last thing before running the
+
+189
+00:07:20,479 --> 00:07:25,120
+simulation it is very likely that one
+
+190
+00:07:22,960 --> 00:07:28,000
+default configuration of unreal engine
+
+191
+00:07:25,120 --> 00:07:30,560
+will make the simulation run really slow
+
+192
+00:07:28,000 --> 00:07:31,360
+go to the editor preferences performance
+
+193
+00:07:30,560 --> 00:07:33,840
+section
+
+194
+00:07:31,360 --> 00:07:36,720
+and disable the use less cpu running
+
+195
+00:07:33,840 --> 00:07:36,720
+background option
+
+196
+00:07:38,400 --> 00:07:42,400
+if any issues are good while making the
+
+197
+00:07:40,400 --> 00:07:44,800
+build remember that you can check our
+
+198
+00:07:42,400 --> 00:07:47,039
+frequently asked questions section
+
+199
+00:07:44,800 --> 00:07:48,479
+open an issue in github or post in the
+
+200
+00:07:47,039 --> 00:07:50,319
+carla forum
+
+201
+00:07:48,479 --> 00:07:52,560
+if there were no problems while making
+
+202
+00:07:50,319 --> 00:07:53,599
+the build it is time to test some basic
+
+203
+00:07:52,560 --> 00:07:55,840
+elements
+
+204
+00:07:53,599 --> 00:07:57,360
+press play to start the simulation and
+
+205
+00:07:55,840 --> 00:07:59,360
+then run the following commands
+
+206
+00:07:57,360 --> 00:08:13,840
+to spawn some vehicles and pedestrians
+
+207
+00:07:59,360 --> 00:08:13,840
+and create a weather cycle
+
+208
+00:08:15,520 --> 00:08:20,800
+now we have a karla town with some life
+
+209
+00:08:17,919 --> 00:08:22,319
+and ambience in it
+
+210
+00:08:20,800 --> 00:08:24,800
+once you have finished with the karla
+
+211
+00:08:22,319 --> 00:08:26,879
+build it is time to have some fun
+
+212
+00:08:24,800 --> 00:08:28,960
+play around with the simulation read our
+
+213
+00:08:26,879 --> 00:08:30,560
+docs especially the first steps on the
+
+214
+00:08:28,960 --> 00:08:34,800
+python app reference
+
+215
+00:08:30,560 --> 00:08:34,800
+and follow other tutorials

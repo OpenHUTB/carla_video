@@ -1,0 +1,1271 @@
+1
+00:00:05,900 --> 00:00:08,640
+welcome to the data Jessie on Talk
+
+2
+00:00:08,640 --> 00:00:11,820
+my name is Burnett bina I'm an engineer
+
+3
+00:00:11,820 --> 00:00:15,059
+of the Karla team and we are going to
+
+4
+00:00:15,059 --> 00:00:20,119
+see one need to what we need to support
+
+5
+00:00:20,119 --> 00:00:22,800
+from other softwares to be able to
+
+6
+00:00:22,800 --> 00:00:24,300
+import into Karla
+
+7
+00:00:24,300 --> 00:00:27,750
+we will see two ways of doing that the
+
+8
+00:00:27,750 --> 00:00:31,679
+import we can use the token and we can
+
+9
+00:00:31,679 --> 00:00:36,030
+import from the source also we will see
+
+10
+00:00:36,030 --> 00:00:38,460
+how to reveal the pedestrian navigation
+
+11
+00:00:38,460 --> 00:00:42,270
+file and also some limitations on future
+
+12
+00:00:42,270 --> 00:00:46,140
+work so let's start with the
+
+13
+00:00:46,140 --> 00:00:50,340
+introduction video where we can see we
+
+14
+00:00:50,340 --> 00:00:53,160
+are using Road Runner for example and we
+
+15
+00:00:53,160 --> 00:00:55,710
+are we have defined a map with traffic
+
+16
+00:00:55,710 --> 00:00:57,690
+lights and we want to import this
+
+17
+00:00:57,690 --> 00:01:02,760
+exactly map into Carla or realtor like
+
+18
+00:01:02,760 --> 00:01:07,860
+now we see all it's working pedestrians
+
+19
+00:01:07,860 --> 00:01:10,290
+vehicles and traffic lights are working
+
+20
+00:01:10,290 --> 00:01:13,010
+fine so
+
+21
+00:01:14,280 --> 00:01:15,860
+[Music]
+
+22
+00:01:15,860 --> 00:01:19,400
+this is the general overflow we can use
+
+23
+00:01:19,400 --> 00:01:22,430
+any other software but at the end we we
+
+24
+00:01:22,430 --> 00:01:24,850
+need to export the specific data that
+
+25
+00:01:24,850 --> 00:01:29,540
+Karla can can understand for the
+
+26
+00:01:29,540 --> 00:01:32,710
+ingestion and import and we can use
+
+27
+00:01:32,710 --> 00:01:36,860
+Tomatoes for import we will see right
+
+28
+00:01:36,860 --> 00:01:39,770
+now but first we will we are going to
+
+29
+00:01:39,770 --> 00:01:43,370
+see what we need to sport mainly the
+
+30
+00:01:43,370 --> 00:01:45,830
+idea is to export two files one is the
+
+31
+00:01:45,830 --> 00:01:46,940
+film box file
+
+32
+00:01:46,940 --> 00:01:50,030
+FBX with the geometry of the map and the
+
+33
+00:01:50,030 --> 00:01:51,890
+other file is the open drive with a
+
+34
+00:01:51,890 --> 00:01:55,390
+traffic Network description of the map
+
+35
+00:01:55,390 --> 00:01:59,060
+also we can use a JSON file this is
+
+36
+00:01:59,060 --> 00:02:01,550
+optional but the important thing is that
+
+37
+00:02:01,550 --> 00:02:05,240
+if we the name of the JSON file will be
+
+38
+00:02:05,240 --> 00:02:07,850
+the name of the package that we need to
+
+39
+00:02:07,850 --> 00:02:11,480
+know later on to sport the the package
+
+40
+00:02:11,480 --> 00:02:15,500
+so if we don't specify JSON file one
+
+41
+00:02:15,500 --> 00:02:17,150
+will be created automatically with the
+
+42
+00:02:17,150 --> 00:02:20,300
+map package name so this is important as
+
+43
+00:02:20,300 --> 00:02:23,060
+we will see later this JSON file is like
+
+44
+00:02:23,060 --> 00:02:26,200
+this it's just a description of the maps
+
+45
+00:02:26,200 --> 00:02:30,530
+the files so for the map one we have the
+
+46
+00:02:30,530 --> 00:02:33,140
+FBX on the open drive and for the map 2
+
+47
+00:02:33,140 --> 00:02:36,770
+we have the DX on the open drive we we
+
+48
+00:02:36,770 --> 00:02:39,590
+can define the folder where they are but
+
+49
+00:02:39,590 --> 00:02:43,070
+this is automatically created if no json
+
+50
+00:02:43,070 --> 00:02:49,209
+file is is given so it's an optional own
+
+51
+00:02:49,430 --> 00:02:53,040
+so for the EDX file it's important to
+
+52
+00:02:53,040 --> 00:02:55,739
+use a specific nomenclature this is
+
+53
+00:02:55,739 --> 00:02:57,510
+important for the pedestrian navigation
+
+54
+00:02:57,510 --> 00:03:01,290
+to identify which are the areas where
+
+55
+00:03:01,290 --> 00:03:04,890
+they can work or cannot work so we have
+
+56
+00:03:04,890 --> 00:03:08,310
+four main areas the road for example all
+
+57
+00:03:08,310 --> 00:03:11,790
+the geometry for the road need to start
+
+58
+00:03:11,790 --> 00:03:15,390
+in one of this nomenclature rod rod rod
+
+59
+00:03:15,390 --> 00:03:18,750
+marking rod core or hot water for the
+
+60
+00:03:18,750 --> 00:03:21,950
+sidewalk we need to use the rod sidewalk
+
+61
+00:03:21,950 --> 00:03:25,170
+also for the crosswalk the same with
+
+62
+00:03:25,170 --> 00:03:26,880
+this nomenclature and the grass that is
+
+63
+00:03:26,880 --> 00:03:31,140
+a secondary sidewalk also need to start
+
+64
+00:03:31,140 --> 00:03:37,620
+with rod grass so let's see how we can
+
+65
+00:03:37,620 --> 00:03:39,660
+import data into Karla
+
+66
+00:03:39,660 --> 00:03:42,660
+we have two ways of doing one is using
+
+67
+00:03:42,660 --> 00:03:47,280
+the token file and also is using the
+
+68
+00:03:47,280 --> 00:03:51,030
+source from the github so in function of
+
+69
+00:03:51,030 --> 00:03:53,489
+the platform we are using for Ubuntu we
+
+70
+00:03:53,489 --> 00:03:56,130
+can choose one of the two but for
+
+71
+00:03:56,130 --> 00:03:58,829
+windows we can only import using the
+
+72
+00:03:58,829 --> 00:04:03,600
+source but importing this way we can do
+
+73
+00:04:03,600 --> 00:04:06,900
+the same that do the token so we are now
+
+74
+00:04:06,900 --> 00:04:11,970
+limited limited so let's start c using
+
+75
+00:04:11,970 --> 00:04:17,459
+the local okay so to use the token first
+
+76
+00:04:17,459 --> 00:04:21,329
+we need to build the docker 1 and we
+
+77
+00:04:21,329 --> 00:04:23,310
+have this information of the files
+
+78
+00:04:23,310 --> 00:04:26,130
+required required for build a docker are
+
+79
+00:04:26,130 --> 00:04:29,970
+in Karla util dokyun also we have some
+
+80
+00:04:29,970 --> 00:04:32,910
+prerequisites like six hundred gigabytes
+
+81
+00:04:32,910 --> 00:04:33,780
+of space
+
+82
+00:04:33,780 --> 00:04:37,979
+Ubuntu 16 was the minimum and also this
+
+83
+00:04:37,979 --> 00:04:42,750
+version of docker by 27 and also the UF
+
+84
+00:04:42,750 --> 00:04:45,450
+for toker model for the Python we will
+
+85
+00:04:45,450 --> 00:04:48,800
+use this for building the
+
+86
+00:04:48,800 --> 00:04:51,729
+and we have to follow these three steps
+
+87
+00:04:51,729 --> 00:04:55,190
+first we need to download the unreal
+
+88
+00:04:55,190 --> 00:04:59,720
+source we are using this command here we
+
+89
+00:04:59,720 --> 00:05:02,000
+see the version of the Unreal we want to
+
+90
+00:05:02,000 --> 00:05:07,520
+use sorry then when we have the source
+
+91
+00:05:07,520 --> 00:05:11,389
+of the unreal we have a second step we
+
+92
+00:05:11,389 --> 00:05:16,490
+use this command to compile to prepare
+
+93
+00:05:16,490 --> 00:05:19,220
+all the compilers and compile the Unreal
+
+94
+00:05:19,220 --> 00:05:22,789
+Engine the prerequisites docker file is
+
+95
+00:05:22,789 --> 00:05:26,719
+in this folder ready to use and the last
+
+96
+00:05:26,719 --> 00:05:28,940
+step is download and compile carve a
+
+97
+00:05:28,940 --> 00:05:31,879
+project using this command also the
+
+98
+00:05:31,879 --> 00:05:33,860
+Carla docker file is is here
+
+99
+00:05:33,860 --> 00:05:37,280
+so with these three steps we have built
+
+100
+00:05:37,280 --> 00:05:39,770
+the docker and it's ready to use
+
+101
+00:05:39,770 --> 00:05:43,940
+so now let's go to let's go to use
+
+102
+00:05:43,940 --> 00:05:47,120
+docker to import we are going to use two
+
+103
+00:05:47,120 --> 00:05:50,030
+folders one is the in folder where we
+
+104
+00:05:50,030 --> 00:05:52,969
+are going to copy the FBX and open the
+
+105
+00:05:52,969 --> 00:05:57,680
+files that we want to import and also
+
+106
+00:05:57,680 --> 00:06:01,550
+the JSON if we are providing one also we
+
+107
+00:06:01,550 --> 00:06:06,409
+are using another folder for output this
+
+108
+00:06:06,409 --> 00:06:08,659
+folder will be the where docker will
+
+109
+00:06:08,659 --> 00:06:13,370
+write the result and what we need to do
+
+110
+00:06:13,370 --> 00:06:15,740
+is to go to the Kerala util docker
+
+111
+00:06:15,740 --> 00:06:19,699
+folder and use the docker tools python
+
+112
+00:06:19,699 --> 00:06:23,930
+script using these arguments the input
+
+113
+00:06:23,930 --> 00:06:26,330
+with the input folder the output with
+
+114
+00:06:26,330 --> 00:06:28,639
+the output folder we are using and also
+
+115
+00:06:28,639 --> 00:06:30,500
+the package we want to export from the
+
+116
+00:06:30,500 --> 00:06:34,849
+docker that is then this is the name of
+
+117
+00:06:34,849 --> 00:06:38,270
+the JSON file that we are providing or
+
+118
+00:06:38,270 --> 00:06:40,940
+if we don't provide JSON file then this
+
+119
+00:06:40,940 --> 00:06:43,819
+name map package is the default one so
+
+120
+00:06:43,819 --> 00:06:46,100
+we are going to use this one
+
+121
+00:06:46,100 --> 00:06:50,600
+so at the end oaken will write in the
+
+122
+00:06:50,600 --> 00:06:53,660
+output folder we define the map package
+
+123
+00:06:53,660 --> 00:06:57,130
+tour wall with all the important files
+
+124
+00:06:57,130 --> 00:07:00,680
+that is this is the docker this is the
+
+125
+00:07:00,680 --> 00:07:03,530
+process that the docker will use Karla
+
+126
+00:07:03,530 --> 00:07:05,210
+source it has the Karla source
+
+127
+00:07:05,210 --> 00:07:08,420
+internally then execute the make import
+
+128
+00:07:08,420 --> 00:07:10,970
+to import the files and then they make
+
+129
+00:07:10,970 --> 00:07:14,780
+packets to make the package this is the
+
+130
+00:07:14,780 --> 00:07:18,530
+package we will get from dhaka and now
+
+131
+00:07:18,530 --> 00:07:21,350
+we can use Karla package that we have an
+
+132
+00:07:21,350 --> 00:07:25,340
+import with the import assets script so
+
+133
+00:07:25,340 --> 00:07:30,320
+let's see this process in a video ok
+
+134
+00:07:30,320 --> 00:07:35,360
+let's see the video as we saw in the
+
+135
+00:07:35,360 --> 00:07:38,600
+image we have the day Karla docker built
+
+136
+00:07:38,600 --> 00:07:41,990
+now ready we have the files to import in
+
+137
+00:07:41,990 --> 00:07:44,840
+the in folder also the ODE folder is
+
+138
+00:07:44,840 --> 00:07:47,180
+empty and now we are moving to the
+
+139
+00:07:47,180 --> 00:07:51,500
+folder util docker and we are going to
+
+140
+00:07:51,500 --> 00:07:55,250
+call the doctor with the parameters we
+
+141
+00:07:55,250 --> 00:07:57,410
+are going to use the docket tools right
+
+142
+00:07:57,410 --> 00:08:00,170
+on the screen with the input and output
+
+143
+00:08:00,170 --> 00:08:02,930
+folders and also the name of the package
+
+144
+00:08:02,930 --> 00:08:12,500
+that we want as a result now dr. is
+
+145
+00:08:12,500 --> 00:08:15,080
+executing making the making poor then
+
+146
+00:08:15,080 --> 00:08:19,520
+they make package and at the end we have
+
+147
+00:08:19,520 --> 00:08:23,060
+in the out folder we are going to see we
+
+148
+00:08:23,060 --> 00:08:26,000
+have the package that is the package
+
+149
+00:08:26,000 --> 00:08:28,850
+that we can import it now we are going
+
+150
+00:08:28,850 --> 00:08:32,990
+to see what to do with this package in
+
+151
+00:08:32,990 --> 00:08:38,090
+another video we have we have a Karla
+
+152
+00:08:38,090 --> 00:08:40,790
+package with this version and what we
+
+153
+00:08:40,790 --> 00:08:42,530
+need to do is to copy the package in the
+
+154
+00:08:42,530 --> 00:08:47,030
+import folder and just call the import
+
+155
+00:08:47,030 --> 00:08:49,270
+assets
+
+156
+00:08:51,930 --> 00:08:55,569
+the import assets just decompress the
+
+157
+00:08:55,569 --> 00:09:04,120
+file so now we start the server and now
+
+158
+00:09:04,120 --> 00:09:06,879
+we are going to load the new map with
+
+159
+00:09:06,879 --> 00:09:10,779
+the config script using config and the
+
+160
+00:09:10,779 --> 00:09:14,790
+name of the map map test in this case
+
+161
+00:09:15,839 --> 00:09:17,079
+okay
+
+162
+00:09:17,079 --> 00:09:20,470
+the map is ready we see we have the
+
+163
+00:09:20,470 --> 00:09:22,899
+traffic lights working they are created
+
+164
+00:09:22,899 --> 00:09:25,449
+in real-time with the information of the
+
+165
+00:09:25,449 --> 00:09:29,889
+urban ref and now we can spawn some cars
+
+166
+00:09:29,889 --> 00:09:37,509
+and some pedestrians there they go we
+
+167
+00:09:37,509 --> 00:09:39,939
+have the Pistons working and some
+
+168
+00:09:39,939 --> 00:09:43,089
+vehicles driving around with the traffic
+
+169
+00:09:43,089 --> 00:09:49,860
+lights working fine so that was working
+
+170
+00:09:49,860 --> 00:09:51,120
+ok
+
+171
+00:09:51,120 --> 00:09:52,470
+[Music]
+
+172
+00:09:52,470 --> 00:09:55,449
+let's move now to the other method to
+
+173
+00:09:55,449 --> 00:09:58,389
+import not using docker but using the
+
+174
+00:09:58,389 --> 00:10:06,850
+Karla source project so it's simple but
+
+175
+00:10:06,850 --> 00:10:09,730
+we we will see we have we need to make
+
+176
+00:10:09,730 --> 00:10:13,629
+an extra step so to import here we have
+
+177
+00:10:13,629 --> 00:10:16,329
+the software we export our files that we
+
+178
+00:10:16,329 --> 00:10:18,939
+need to import here we need to copy
+
+179
+00:10:18,939 --> 00:10:22,750
+these files in the import folder of the
+
+180
+00:10:22,750 --> 00:10:25,600
+Karla project and then just execute the
+
+181
+00:10:25,600 --> 00:10:28,660
+make important this will cook all the
+
+182
+00:10:28,660 --> 00:10:33,699
+files and will give us the map ready to
+
+183
+00:10:33,699 --> 00:10:37,269
+load in reality tour so that the
+
+184
+00:10:37,269 --> 00:10:39,250
+advantage of this is that we can use
+
+185
+00:10:39,250 --> 00:10:42,339
+unreal editor to modify the map if we
+
+186
+00:10:42,339 --> 00:10:47,050
+need but we need to recreate the Beanery
+
+187
+00:10:47,050 --> 00:10:48,759
+file for the pedestrian navigation
+
+188
+00:10:48,759 --> 00:10:51,970
+docker does this automatically but for
+
+189
+00:10:51,970 --> 00:10:54,519
+the Kara source we have to do it in a
+
+190
+00:10:54,519 --> 00:10:57,519
+separated way so we are going to see now
+
+191
+00:10:57,519 --> 00:11:02,370
+how to recreate the pedestrian area
+
+192
+00:11:02,650 --> 00:11:06,770
+so this process basically what it does
+
+193
+00:11:06,770 --> 00:11:10,220
+is with the geometry of the map that we
+
+194
+00:11:10,220 --> 00:11:14,930
+have we have to imported in realtor we
+
+195
+00:11:14,930 --> 00:11:19,400
+can load the map a new level and then we
+
+196
+00:11:19,400 --> 00:11:21,680
+can use the collects portal to export
+
+197
+00:11:21,680 --> 00:11:26,210
+the geometry in obj file also from the
+
+198
+00:11:26,210 --> 00:11:29,270
+open drive of the map we can parse the
+
+199
+00:11:29,270 --> 00:11:31,130
+open drive and get all the crosswalks
+
+200
+00:11:31,130 --> 00:11:33,740
+that could be defined from Road Runner
+
+201
+00:11:33,740 --> 00:11:38,360
+for example and finally the final obj
+
+202
+00:11:38,360 --> 00:11:41,960
+file will be they will be passed by a
+
+203
+00:11:41,960 --> 00:11:44,660
+recast builder an application with it
+
+204
+00:11:44,660 --> 00:11:47,600
+also and we'll create we'll create the
+
+205
+00:11:47,600 --> 00:11:50,810
+final binary file this binary file it's
+
+206
+00:11:50,810 --> 00:11:53,600
+a description of the areas where the
+
+207
+00:11:53,600 --> 00:11:59,030
+pedestrians can walk or not so the first
+
+208
+00:11:59,030 --> 00:12:02,450
+step is to load the map the important
+
+209
+00:12:02,450 --> 00:12:05,720
+map in the Unreal editor and then use
+
+210
+00:12:05,720 --> 00:12:08,750
+the car exporter to create the object of
+
+211
+00:12:08,750 --> 00:12:13,610
+that map the car exporter will will save
+
+212
+00:12:13,610 --> 00:12:16,670
+the obj file in the car loan real Carla
+
+213
+00:12:16,670 --> 00:12:20,900
+Fuqua for saved and then we have to copy
+
+214
+00:12:20,900 --> 00:12:24,470
+that obj and the open drive in this
+
+215
+00:12:24,470 --> 00:12:27,350
+folder Carla you till doc utils this
+
+216
+00:12:27,350 --> 00:12:29,660
+because here we have some scripts that
+
+217
+00:12:29,660 --> 00:12:32,540
+we only need to call once and all will
+
+218
+00:12:32,540 --> 00:12:35,720
+be generated the the open drive is
+
+219
+00:12:35,720 --> 00:12:38,840
+needed only if we have some crosswalks
+
+220
+00:12:38,840 --> 00:12:43,130
+define but if not we can free we are
+
+221
+00:12:43,130 --> 00:12:45,470
+free to not copy but doesn't matter
+
+222
+00:12:45,470 --> 00:12:49,190
+really and this is the second step that
+
+223
+00:12:49,190 --> 00:12:52,490
+we need to build to call this script a
+
+224
+00:12:52,490 --> 00:12:58,300
+build or a built in Linux
+
+225
+00:12:58,460 --> 00:13:01,310
+with the name of the map with of the
+
+226
+00:13:01,310 --> 00:13:04,680
+extension so this clip will be able to
+
+227
+00:13:04,680 --> 00:13:07,350
+find the map test open drive map test
+
+228
+00:13:07,350 --> 00:13:11,340
+@vx or VJ or whatever the this this
+
+229
+00:13:11,340 --> 00:13:15,200
+script will do these these steps here
+
+230
+00:13:15,200 --> 00:13:19,770
+basically if we have the Autodesk FBX
+
+231
+00:13:19,770 --> 00:13:22,770
+SDK installed and and this application
+
+232
+00:13:22,770 --> 00:13:25,950
+is compiled it that we provide this
+
+233
+00:13:25,950 --> 00:13:30,600
+source then we'll try to convert the FBX
+
+234
+00:13:30,600 --> 00:13:33,690
+to object but because we use the Cal
+
+235
+00:13:33,690 --> 00:13:36,390
+exported and we have the map in obj file
+
+236
+00:13:36,390 --> 00:13:37,460
+format
+
+237
+00:13:37,460 --> 00:13:40,800
+this step is Skype so we don't need to
+
+238
+00:13:40,800 --> 00:13:46,350
+install this library so the open drive
+
+239
+00:13:46,350 --> 00:13:50,010
+will be an per set by this script to
+
+240
+00:13:50,010 --> 00:13:52,800
+find all the cross walls will generate
+
+241
+00:13:52,800 --> 00:13:55,710
+obj with all the cross walls with this
+
+242
+00:13:55,710 --> 00:13:58,440
+script we merge both of edges in only
+
+243
+00:13:58,440 --> 00:14:00,660
+one that will be used for
+
+244
+00:14:00,660 --> 00:14:02,970
+miracast builder to generate the binary
+
+245
+00:14:02,970 --> 00:14:06,030
+file so at the end is been a file we
+
+246
+00:14:06,030 --> 00:14:09,450
+need to copy to the NAP navigation
+
+247
+00:14:09,450 --> 00:14:13,230
+folder of the map and that's it so let's
+
+248
+00:14:13,230 --> 00:14:17,940
+see in a video all this process we have
+
+249
+00:14:17,940 --> 00:14:19,770
+the files we want to import
+
+250
+00:14:19,770 --> 00:14:22,500
+we copying the import of the kerala
+
+251
+00:14:22,500 --> 00:14:28,490
+project there is no json file there and
+
+252
+00:14:28,490 --> 00:14:37,680
+now we have to to make an import now
+
+253
+00:14:37,680 --> 00:14:41,640
+it's in importing in unreal editor these
+
+254
+00:14:41,640 --> 00:14:46,490
+files we will see in the import folder
+
+255
+00:14:46,490 --> 00:14:50,640
+that initiation is there is
+
+256
+00:14:50,640 --> 00:14:53,160
+automatically created with the name map
+
+257
+00:14:53,160 --> 00:14:54,770
+pocket
+
+258
+00:14:54,770 --> 00:15:00,350
+okay we have all the files imported now
+
+259
+00:15:00,350 --> 00:15:17,450
+we need to to launch editor okay and now
+
+260
+00:15:17,450 --> 00:15:21,200
+we are ready to load the map the
+
+261
+00:15:21,200 --> 00:15:23,300
+imported map it's in the map package
+
+262
+00:15:23,300 --> 00:15:27,800
+inside the maps map test this is your
+
+263
+00:15:27,800 --> 00:15:28,339
+map
+
+264
+00:15:28,339 --> 00:15:35,270
+we loved okay there it is and now we
+
+265
+00:15:35,270 --> 00:15:39,020
+need to export in obj format using the
+
+266
+00:15:39,020 --> 00:15:42,529
+curl exporter the Cal exported is in the
+
+267
+00:15:42,529 --> 00:15:50,029
+file menu this will export all the
+
+268
+00:15:50,029 --> 00:15:57,560
+geometry in the saved folder so now we
+
+269
+00:15:57,560 --> 00:16:01,520
+are going to find the obj and we need to
+
+270
+00:16:01,520 --> 00:16:06,170
+copy to the other folder here is the
+
+271
+00:16:06,170 --> 00:16:11,450
+file we are going to make a temporary
+
+272
+00:16:11,450 --> 00:16:17,360
+copy and now we are going to move to the
+
+273
+00:16:17,360 --> 00:16:23,959
+utils docker utils the cutest list and
+
+274
+00:16:23,959 --> 00:16:28,029
+we need to copy here the obj and the
+
+275
+00:16:28,029 --> 00:16:31,540
+open drive file
+
+276
+00:16:36,920 --> 00:16:41,970
+okay and now we can call the build
+
+277
+00:16:41,970 --> 00:16:45,780
+script with the name of the map and it
+
+278
+00:16:45,780 --> 00:16:49,820
+will generate the Beanery file for us
+
+279
+00:16:49,820 --> 00:16:54,930
+okay there it is so now we have the map
+
+280
+00:16:54,930 --> 00:16:55,470
+test
+
+281
+00:16:55,470 --> 00:16:59,090
+pin this is the file we need to copy
+
+282
+00:16:59,090 --> 00:17:01,890
+inside the navigation folder of the map
+
+283
+00:17:01,890 --> 00:17:05,220
+so we are going to move to the folder
+
+284
+00:17:05,220 --> 00:17:09,960
+where is the map map package the package
+
+285
+00:17:09,960 --> 00:17:13,350
+inside maps map test and here in the NAP
+
+286
+00:17:13,350 --> 00:17:18,630
+folder this is the original one and this
+
+287
+00:17:18,630 --> 00:17:22,560
+is the new one that is bigger and we
+
+288
+00:17:22,560 --> 00:17:26,880
+replace okay now we are ready to run the
+
+289
+00:17:26,880 --> 00:17:34,410
+simulation and we will see the traffic
+
+290
+00:17:34,410 --> 00:17:37,830
+lights will be created at real time with
+
+291
+00:17:37,830 --> 00:17:41,790
+the open drive information and now we
+
+292
+00:17:41,790 --> 00:17:43,740
+can spawn some vehicles and pedestrians
+
+293
+00:17:43,740 --> 00:17:47,450
+to see that they work
+
+294
+00:17:55,690 --> 00:18:01,240
+okay all is working perfect
+
+295
+00:18:01,240 --> 00:18:04,490
+you have the pedestrians walking and
+
+296
+00:18:04,490 --> 00:18:08,620
+crossing the roads and the vehicles so
+
+297
+00:18:08,620 --> 00:18:12,980
+so let's move now to the limitations on
+
+298
+00:18:12,980 --> 00:18:17,510
+future work the cooking process could
+
+299
+00:18:17,510 --> 00:18:22,400
+file with huge Maps so we need to check
+
+300
+00:18:22,400 --> 00:18:26,990
+that with a very huge map and also for
+
+301
+00:18:26,990 --> 00:18:30,170
+the sign ingestion we we need to find a
+
+302
+00:18:30,170 --> 00:18:33,980
+way to identify when a traffic light
+
+303
+00:18:33,980 --> 00:18:36,470
+comes from the geometry from the FBX
+
+304
+00:18:36,470 --> 00:18:40,280
+file to remove them because we create
+
+305
+00:18:40,280 --> 00:18:42,350
+the traffic lights and other traffic
+
+306
+00:18:42,350 --> 00:18:44,750
+signs from the open drive information
+
+307
+00:18:44,750 --> 00:18:48,280
+and with an we don't want to plication
+
+308
+00:18:48,280 --> 00:18:51,890
+also the the signs that are created from
+
+309
+00:18:51,890 --> 00:18:53,990
+the open drive right now don't have
+
+310
+00:18:53,990 --> 00:18:56,840
+collisions for the pedestrians because
+
+311
+00:18:56,840 --> 00:18:59,350
+they are created a tree on our real time
+
+312
+00:18:59,350 --> 00:19:02,810
+so they are not in the binary file but
+
+313
+00:19:02,810 --> 00:19:05,990
+we we need to fix that and also we saw
+
+314
+00:19:05,990 --> 00:19:08,380
+some problems with the VX importer that
+
+315
+00:19:08,380 --> 00:19:13,540
+uses unreal with some alpha channels and
+
+316
+00:19:13,540 --> 00:19:19,290
+models with a scale it has some trouble
+
+317
+00:19:19,290 --> 00:19:22,710
+and that's it thank you very much for
+
+318
+00:19:22,710 --> 00:19:25,160
+watching

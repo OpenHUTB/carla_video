@@ -1,0 +1,1287 @@
+1
+00:00:04,550 --> 00:00:08,980
+Oh welcome to the pedestrian stork the
+
+2
+00:00:08,980 --> 00:00:12,619
+nil nervous it's an artist the Carla
+
+3
+00:00:12,619 --> 00:00:15,949
+team and myself were not Deena I'm an
+
+4
+00:00:15,949 --> 00:00:19,070
+engineer the Carla team and we are going
+
+5
+00:00:19,070 --> 00:00:21,950
+to talk a bit about the pedestrian and
+
+6
+00:00:21,950 --> 00:00:25,010
+their implementations we are going to
+
+7
+00:00:25,010 --> 00:00:27,650
+talk about the pedestrian navigation or
+
+8
+00:00:27,650 --> 00:00:30,020
+we hope to populate the map how it works
+
+9
+00:00:30,020 --> 00:00:33,350
+some improvements with it and a bit
+
+10
+00:00:33,350 --> 00:00:37,850
+about the class hierarchy and then the
+
+11
+00:00:37,850 --> 00:00:39,500
+nil nervous we'll talk about the
+
+12
+00:00:39,500 --> 00:00:43,160
+pedestrian animations about how is the
+
+13
+00:00:43,160 --> 00:00:46,370
+model in the 3d software how to import
+
+14
+00:00:46,370 --> 00:00:50,059
+from Maya to real engine and read about
+
+15
+00:00:50,059 --> 00:00:54,739
+the blueprint of the pedestrians then we
+
+16
+00:00:54,739 --> 00:00:57,170
+will see some limitations and the future
+
+17
+00:00:57,170 --> 00:01:02,719
+world so let's start with a video to see
+
+18
+00:01:02,719 --> 00:01:05,840
+how the pedestrian shark right now hold
+
+19
+00:01:05,840 --> 00:01:10,729
+a look we have adult and children's we
+
+20
+00:01:10,729 --> 00:01:12,950
+have male and female with different
+
+21
+00:01:12,950 --> 00:01:16,520
+closeness they can cross the road
+
+22
+00:01:16,520 --> 00:01:20,869
+through the crosswalks and they avoid
+
+23
+00:01:20,869 --> 00:01:26,450
+each each other so they are great to
+
+24
+00:01:26,450 --> 00:01:29,889
+populate a map
+
+25
+00:01:33,549 --> 00:01:36,920
+so let's talk about pedestrian education
+
+26
+00:01:36,920 --> 00:01:40,820
+first how to populate what we can create
+
+27
+00:01:40,820 --> 00:01:44,179
+questions well the first thing is to
+
+28
+00:01:44,179 --> 00:01:47,179
+connect to the server like this and then
+
+29
+00:01:47,179 --> 00:01:52,640
+get the world object then we have to
+
+30
+00:01:52,640 --> 00:01:54,950
+find a blueprint of the pedestrian that
+
+31
+00:01:54,950 --> 00:01:58,689
+we want to spawn we can use this filter
+
+32
+00:01:58,689 --> 00:02:02,149
+with the asterisk so we will get all the
+
+33
+00:02:02,149 --> 00:02:05,539
+pedestrians available for us then we
+
+34
+00:02:05,539 --> 00:02:07,970
+have to do similar thing to find the
+
+35
+00:02:07,970 --> 00:02:10,429
+controller that we will apply to each
+
+36
+00:02:10,429 --> 00:02:13,640
+pedestrian this controller is the one
+
+37
+00:02:13,640 --> 00:02:16,790
+who will control the pedestrian to move
+
+38
+00:02:16,790 --> 00:02:21,410
+from point to point then we have to
+
+39
+00:02:21,410 --> 00:02:24,910
+create a point transform a transform and
+
+40
+00:02:24,910 --> 00:02:28,370
+the location we can use this method get
+
+41
+00:02:28,370 --> 00:02:31,340
+random location from navigation this
+
+42
+00:02:31,340 --> 00:02:34,099
+method will return a point always
+
+43
+00:02:34,099 --> 00:02:36,769
+available for navigation for the
+
+44
+00:02:36,769 --> 00:02:39,620
+pedestrian so usually it's a point that
+
+45
+00:02:39,620 --> 00:02:44,000
+is always in a sidewalk and then we can
+
+46
+00:02:44,000 --> 00:02:46,970
+move the pedestrian a bit up so to avoid
+
+47
+00:02:46,970 --> 00:02:51,230
+collisions with the road now we are
+
+48
+00:02:51,230 --> 00:02:54,920
+going to spawn the pedestrian first we
+
+49
+00:02:54,920 --> 00:02:57,859
+need to choose one from the list of
+
+50
+00:02:57,859 --> 00:03:02,030
+pedestrians that we get here we will
+
+51
+00:03:02,030 --> 00:03:05,000
+choose one at random then we put the
+
+52
+00:03:05,000 --> 00:03:09,280
+actor in the position we define here and
+
+53
+00:03:09,280 --> 00:03:12,350
+then we wait for a tick just to be sure
+
+54
+00:03:12,350 --> 00:03:16,519
+that the actor exists in the server and
+
+55
+00:03:16,519 --> 00:03:19,880
+now we have to spawn the controller so
+
+56
+00:03:19,880 --> 00:03:22,780
+we use the similar function spawn actor
+
+57
+00:03:22,780 --> 00:03:26,569
+will control the blueprint also an outer
+
+58
+00:03:26,569 --> 00:03:27,819
+point
+
+59
+00:03:27,819 --> 00:03:30,280
+this is not important because the
+
+60
+00:03:30,280 --> 00:03:33,129
+controllers need to go attach it to this
+
+61
+00:03:33,129 --> 00:03:37,510
+actor to this pedestrian also we wait
+
+62
+00:03:37,510 --> 00:03:39,069
+for another tick so the controller
+
+63
+00:03:39,069 --> 00:03:42,459
+exists and from this point we can use
+
+64
+00:03:42,459 --> 00:03:46,000
+the controller methods for example the
+
+65
+00:03:46,000 --> 00:03:48,459
+stunt that will add the new pedestrian
+
+66
+00:03:48,459 --> 00:03:53,170
+to the crowd and also we can use the
+
+67
+00:03:53,170 --> 00:03:57,250
+method to go to location to make the
+
+68
+00:03:57,250 --> 00:03:59,760
+pedestrian walk to that position
+
+69
+00:03:59,760 --> 00:04:03,459
+following a road and we can use the
+
+70
+00:04:03,459 --> 00:04:06,189
+similar method that we use before get
+
+71
+00:04:06,189 --> 00:04:11,019
+random location from navigation this is
+
+72
+00:04:11,019 --> 00:04:14,609
+with your running the script 200 times
+
+73
+00:04:14,609 --> 00:04:21,359
+and we will see that the pedestrians are
+
+74
+00:04:21,599 --> 00:04:26,889
+spawning around the map and they start
+
+75
+00:04:26,889 --> 00:04:31,300
+to walk to a random point throw all the
+
+76
+00:04:31,300 --> 00:04:34,960
+map and if they need to cross the road
+
+77
+00:04:34,960 --> 00:04:38,889
+they will do that always
+
+78
+00:04:38,889 --> 00:04:42,090
+on a cross work
+
+79
+00:04:46,990 --> 00:04:51,860
+okay let's move now let's talk about how
+
+80
+00:04:51,860 --> 00:04:52,700
+this works
+
+81
+00:04:52,700 --> 00:04:56,450
+well we use a an open source library
+
+82
+00:04:56,450 --> 00:04:58,100
+that recast the tool already
+
+83
+00:04:58,100 --> 00:05:00,350
+it's a knob-end source it's in github
+
+84
+00:05:00,350 --> 00:05:03,800
+here in this link and we use this
+
+85
+00:05:03,800 --> 00:05:05,900
+library because we want to all the
+
+86
+00:05:05,900 --> 00:05:08,960
+calculations about the pedestrians are
+
+87
+00:05:08,960 --> 00:05:11,210
+in the client side not in the server
+
+88
+00:05:11,210 --> 00:05:13,850
+side so the server don't need to
+
+89
+00:05:13,850 --> 00:05:16,550
+calculate anything about the pedestrian
+
+90
+00:05:16,550 --> 00:05:21,950
+navigation so the the recast comes with
+
+91
+00:05:21,950 --> 00:05:25,910
+the a user interface where we can import
+
+92
+00:05:25,910 --> 00:05:30,530
+our geometry or about the map it's in
+
+93
+00:05:30,530 --> 00:05:34,940
+obj format then we can define a specify
+
+94
+00:05:34,940 --> 00:05:38,030
+some parameters and then we can start
+
+95
+00:05:38,030 --> 00:05:41,270
+calculating all the para or all the
+
+96
+00:05:41,270 --> 00:05:44,090
+geometry needed for the but finding
+
+97
+00:05:44,090 --> 00:05:48,470
+algorithms once this is finished the
+
+98
+00:05:48,470 --> 00:05:51,850
+calculation we can save Beanery file
+
+99
+00:05:51,850 --> 00:05:55,940
+with the final results so at the end we
+
+100
+00:05:55,940 --> 00:05:59,180
+only need to load these final results to
+
+101
+00:05:59,180 --> 00:06:04,220
+be able to navigate the pedestrians but
+
+102
+00:06:04,220 --> 00:06:07,150
+has some limitations for us the recast
+
+103
+00:06:07,150 --> 00:06:10,640
+one is the size of the map cannot be
+
+104
+00:06:10,640 --> 00:06:15,800
+huge because it uses some grid voxel
+
+105
+00:06:15,800 --> 00:06:18,830
+ization to convert the map geometry to
+
+106
+00:06:18,830 --> 00:06:22,700
+internal structures so probably we have
+
+107
+00:06:22,700 --> 00:06:26,039
+to improve this part
+
+108
+00:06:26,039 --> 00:06:28,740
+and also it's difficult to define
+
+109
+00:06:28,740 --> 00:06:31,559
+different areas for the pedestrians for
+
+110
+00:06:31,559 --> 00:06:36,029
+example grass sidewall crosswalk of the
+
+111
+00:06:36,029 --> 00:06:38,819
+roads because with the ghee we have to
+
+112
+00:06:38,819 --> 00:06:43,830
+define by hand a polygon closed polygon
+
+113
+00:06:43,830 --> 00:06:47,159
+and then all the three angles inside
+
+114
+00:06:47,159 --> 00:06:51,449
+will be of that specific area but that
+
+115
+00:06:51,449 --> 00:06:54,270
+was not very helpful for us so to use
+
+116
+00:06:54,270 --> 00:06:56,520
+the racast at all we have to make some
+
+117
+00:06:56,520 --> 00:07:00,120
+improvements the first thing we had was
+
+118
+00:07:00,120 --> 00:07:03,930
+a plugin in the Unreal editor
+
+119
+00:07:03,930 --> 00:07:07,169
+it's a Karl exporter that will export we
+
+120
+00:07:07,169 --> 00:07:09,719
+convert the map that you have on the
+
+121
+00:07:09,719 --> 00:07:12,960
+detour to obj format right before recast
+
+122
+00:07:12,960 --> 00:07:17,180
+to ingest also we create an application
+
+123
+00:07:17,180 --> 00:07:20,339
+the records builder that without any
+
+124
+00:07:20,339 --> 00:07:24,659
+user interface just with an input
+
+125
+00:07:24,659 --> 00:07:27,509
+parameter the map in obj format exported
+
+126
+00:07:27,509 --> 00:07:30,149
+from the Karl export tab for example and
+
+127
+00:07:30,149 --> 00:07:33,300
+it will generate the final binary that
+
+128
+00:07:33,300 --> 00:07:36,629
+we need so this is great for automatic
+
+129
+00:07:36,629 --> 00:07:40,259
+generation of the binary file also this
+
+130
+00:07:40,259 --> 00:07:42,779
+binary file will be saved in the server
+
+131
+00:07:42,779 --> 00:07:46,379
+side and will be sent to all the clients
+
+132
+00:07:46,379 --> 00:07:52,139
+that meet the pedestrian also we improve
+
+133
+00:07:52,139 --> 00:07:55,830
+the way we can define the areas where
+
+134
+00:07:55,830 --> 00:07:59,039
+the pedestrians can work they are mainly
+
+135
+00:07:59,039 --> 00:08:02,240
+four areas one is the road the sidewalk
+
+136
+00:08:02,240 --> 00:08:06,529
+the crosswalk and the grass so to define
+
+137
+00:08:06,529 --> 00:08:09,419
+all of these areas we have to specify
+
+138
+00:08:09,419 --> 00:08:12,389
+specific nomenclature for example when
+
+139
+00:08:12,389 --> 00:08:18,629
+in the 3d software or in unreal we have
+
+140
+00:08:18,629 --> 00:08:21,479
+to specify starting the name convention
+
+141
+00:08:21,479 --> 00:08:24,120
+for that object for example this road
+
+142
+00:08:24,120 --> 00:08:27,539
+that we have selected start by Road Road
+
+143
+00:08:27,539 --> 00:08:29,490
+that means for the navigation
+
+144
+00:08:29,490 --> 00:08:30,980
+pedestrians
+
+145
+00:08:30,980 --> 00:08:35,000
+this will be a Rotarian so the same for
+
+146
+00:08:35,000 --> 00:08:37,669
+the sidewalk we have selected one and
+
+147
+00:08:37,669 --> 00:08:42,860
+start by the road sidewalk the same for
+
+148
+00:08:42,860 --> 00:08:47,060
+the crosswalk the crosswalk and also for
+
+149
+00:08:47,060 --> 00:08:50,270
+the grass the grass are bigger areas
+
+150
+00:08:50,270 --> 00:08:53,690
+that are like a secondary sidewalks the
+
+151
+00:08:53,690 --> 00:08:57,080
+pedestrian can walk there but will we
+
+152
+00:08:57,080 --> 00:09:02,060
+know the first option to work so let's
+
+153
+00:09:02,060 --> 00:09:05,660
+take a more technical look to this this
+
+154
+00:09:05,660 --> 00:09:08,710
+image we see the we have several
+
+155
+00:09:08,710 --> 00:09:12,700
+pedestrians and each one have a
+
+156
+00:09:12,700 --> 00:09:17,690
+controller attached to it this
+
+157
+00:09:17,690 --> 00:09:20,570
+controller that we use in this clip
+
+158
+00:09:20,570 --> 00:09:25,220
+before using this commands have four
+
+159
+00:09:25,220 --> 00:09:27,710
+methods that we can use the start and
+
+160
+00:09:27,710 --> 00:09:30,290
+the stop is to add or remove the
+
+161
+00:09:30,290 --> 00:09:32,660
+pedestrian from from the crowd so it's
+
+162
+00:09:32,660 --> 00:09:37,330
+managed automatically also the method to
+
+163
+00:09:37,330 --> 00:09:41,840
+make pedestrian work to a point and also
+
+164
+00:09:41,840 --> 00:09:44,960
+if we want to fix a maximum speed for
+
+165
+00:09:44,960 --> 00:09:48,590
+different pedestrians and also the
+
+166
+00:09:48,590 --> 00:09:52,070
+controller just to clarify that needs to
+
+167
+00:09:52,070 --> 00:09:56,600
+be attached to each pedestrian and this
+
+168
+00:09:56,600 --> 00:10:00,290
+is the class hierarchy we can start from
+
+169
+00:10:00,290 --> 00:10:02,840
+the from the bottom we have for example
+
+170
+00:10:02,840 --> 00:10:06,770
+two actors with date controller attached
+
+171
+00:10:06,770 --> 00:10:10,190
+it and this controller connects directly
+
+172
+00:10:10,190 --> 00:10:13,370
+to the walker navigation class that is
+
+173
+00:10:13,370 --> 00:10:17,570
+the one in charge of the updating the
+
+174
+00:10:17,570 --> 00:10:21,440
+crowd the pedestrians so he needs to
+
+175
+00:10:21,440 --> 00:10:26,170
+check if a pedestrian hostile or exist
+
+176
+00:10:26,170 --> 00:10:30,130
+if if it doesn't exist then will will be
+
+177
+00:10:30,130 --> 00:10:33,400
+removed from the crowd also he needs to
+
+178
+00:10:33,400 --> 00:10:36,400
+update the vehicle in the endures in the
+
+179
+00:10:36,400 --> 00:10:39,370
+map because the pedestrians tried to
+
+180
+00:10:39,370 --> 00:10:42,850
+avoid the vehicles and also update the
+
+181
+00:10:42,850 --> 00:10:47,530
+position of these pedestrians then the
+
+182
+00:10:47,530 --> 00:10:49,720
+Walker navigation needs some low-level
+
+183
+00:10:49,720 --> 00:10:52,420
+functions from this class the navigation
+
+184
+00:10:52,420 --> 00:10:55,030
+this is the class that will use the
+
+185
+00:10:55,030 --> 00:10:57,970
+records library and also will receive
+
+186
+00:10:57,970 --> 00:11:01,030
+the Beanery file for the navigation from
+
+187
+00:11:01,030 --> 00:11:03,580
+the server or the server will send this
+
+188
+00:11:03,580 --> 00:11:06,610
+content for the corresponding map and
+
+189
+00:11:06,610 --> 00:11:09,400
+the navigation class will load this
+
+190
+00:11:09,400 --> 00:11:11,590
+Venera file to the records Liberty to
+
+191
+00:11:11,590 --> 00:11:13,900
+use all the functionality about
+
+192
+00:11:13,900 --> 00:11:18,190
+navigation also we have two more classes
+
+193
+00:11:18,190 --> 00:11:20,560
+the walcker manager and the worker event
+
+194
+00:11:20,560 --> 00:11:23,860
+the worker manager is the one that will
+
+195
+00:11:23,860 --> 00:11:26,620
+define the road that will follow each
+
+196
+00:11:26,620 --> 00:11:30,610
+pedestrian to to go to a point and also
+
+197
+00:11:30,610 --> 00:11:33,970
+we create some specific events like for
+
+198
+00:11:33,970 --> 00:11:37,090
+example a stop and check that this event
+
+199
+00:11:37,090 --> 00:11:40,000
+happens when a pedestrian needs to cross
+
+200
+00:11:40,000 --> 00:11:42,670
+the road through the crosswalk
+
+201
+00:11:42,670 --> 00:11:45,820
+then the pedestrian will stop and check
+
+202
+00:11:45,820 --> 00:11:49,480
+if a vehicle is in front and we wait
+
+203
+00:11:49,480 --> 00:11:54,490
+until the way is free to walk and that's
+
+204
+00:11:54,490 --> 00:11:57,160
+all for the pedestrian navigation now
+
+205
+00:11:57,160 --> 00:11:59,710
+the nil novice will carry on the talk
+
+206
+00:11:59,710 --> 00:12:04,330
+with the pedestrian animations greetings
+
+207
+00:12:04,330 --> 00:12:06,820
+i'm daniel dollars I'm a developer from
+
+208
+00:12:06,820 --> 00:12:08,410
+the our team and I'll give you some
+
+209
+00:12:08,410 --> 00:12:10,060
+information about how to import
+
+210
+00:12:10,060 --> 00:12:12,300
+pedestrian models and animation clips
+
+211
+00:12:12,300 --> 00:12:15,340
+also about the bound actor class and the
+
+212
+00:12:15,340 --> 00:12:17,320
+way the navigations logic determines the
+
+213
+00:12:17,320 --> 00:12:19,150
+displayed animation sequences through
+
+214
+00:12:19,150 --> 00:12:21,250
+the animations routine even graph and in
+
+215
+00:12:21,250 --> 00:12:24,900
+grass and bled spirits tool
+
+216
+00:12:25,030 --> 00:12:27,880
+the distance in unreal for our pound
+
+217
+00:12:27,880 --> 00:12:29,860
+actors we are defined as a combination
+
+218
+00:12:29,860 --> 00:12:33,090
+of a skin mesh and skeletal hierarchy
+
+219
+00:12:33,090 --> 00:12:35,560
+they represent humans and they are
+
+220
+00:12:35,560 --> 00:12:38,350
+subject to navigations logic also we
+
+221
+00:12:38,350 --> 00:12:41,370
+have the option to control them manually
+
+222
+00:12:41,370 --> 00:12:44,260
+we have four based models to adults male
+
+223
+00:12:44,260 --> 00:12:46,500
+and female and took it boy and girl in
+
+224
+00:12:46,500 --> 00:12:48,850
+space model has multiple clothing
+
+225
+00:12:48,850 --> 00:12:51,670
+variations the poly count is about 10
+
+226
+00:12:51,670 --> 00:12:54,520
+20,000 triangles for the shaders we work
+
+227
+00:12:54,520 --> 00:12:57,040
+with PBR textures this includes clothing
+
+228
+00:12:57,040 --> 00:12:59,890
+subsurface skin shader and a specific
+
+229
+00:12:59,890 --> 00:13:03,550
+head shader about animations we use an
+
+230
+00:13:03,550 --> 00:13:05,290
+animation set that includes either
+
+231
+00:13:05,290 --> 00:13:08,080
+working running and piped cycles this
+
+232
+00:13:08,080 --> 00:13:11,550
+skeletal hierarchy is made of 66 bones
+
+233
+00:13:11,550 --> 00:13:14,320
+as I said all pedestal models share the
+
+234
+00:13:14,320 --> 00:13:16,390
+same skeleton of 66 bones they share
+
+235
+00:13:16,390 --> 00:13:18,190
+both hierarchy and naming conventions
+
+236
+00:13:18,190 --> 00:13:20,140
+but they have different sizes and
+
+237
+00:13:20,140 --> 00:13:23,410
+proportions this skeleton offers control
+
+238
+00:13:23,410 --> 00:13:25,540
+for a biped model there is no facial
+
+239
+00:13:25,540 --> 00:13:27,430
+expression only the eyes which are
+
+240
+00:13:27,430 --> 00:13:30,580
+controlled by bones we work with FBX
+
+241
+00:13:30,580 --> 00:13:32,710
+files for pedestrian models both teens
+
+242
+00:13:32,710 --> 00:13:34,810
+meshes and skeletons are sported from
+
+243
+00:13:34,810 --> 00:13:38,200
+Maya in a single file FBX file format
+
+244
+00:13:38,200 --> 00:13:40,510
+can include data and geometry skeleton
+
+245
+00:13:40,510 --> 00:13:42,550
+her keys animated channels and vertex
+
+246
+00:13:42,550 --> 00:13:46,150
+skinning weights imported skeletons must
+
+247
+00:13:46,150 --> 00:13:47,530
+be compatible and assigned to the
+
+248
+00:13:47,530 --> 00:13:49,990
+escapists in general acid this is our
+
+249
+00:13:49,990 --> 00:13:51,310
+standard pedestrian skele-toes
+
+250
+00:13:51,310 --> 00:13:53,440
+definition or grill these definitions
+
+251
+00:13:53,440 --> 00:13:55,089
+includes information to generate the
+
+252
+00:13:55,089 --> 00:13:58,810
+skeletal mesh physics a set animation
+
+253
+00:13:58,810 --> 00:14:00,460
+sequences are exported as independent
+
+254
+00:14:00,460 --> 00:14:02,200
+FBX files they should contain the
+
+255
+00:14:02,200 --> 00:14:05,410
+skeleton and animated data insight on
+
+256
+00:14:05,410 --> 00:14:07,030
+real they are defined by the sky
+
+257
+00:14:07,030 --> 00:14:09,010
+pedestrian ginger and acid when imported
+
+258
+00:14:09,010 --> 00:14:10,839
+the epic X must be assigned to these
+
+259
+00:14:10,839 --> 00:14:12,660
+efficient just like the skin geometry
+
+260
+00:14:12,660 --> 00:14:15,250
+the result is an animation sequence
+
+261
+00:14:15,250 --> 00:14:20,400
+asset we named our actors as BP Walker
+
+262
+00:14:20,400 --> 00:14:22,300
+pouncing on real are the way to
+
+263
+00:14:22,300 --> 00:14:24,130
+implement weak pedestrian actors and
+
+264
+00:14:24,130 --> 00:14:25,870
+both connect them to navigation logic or
+
+265
+00:14:25,870 --> 00:14:28,030
+cultural them manually collision
+
+266
+00:14:28,030 --> 00:14:29,530
+detection can be added at the bounce
+
+267
+00:14:29,530 --> 00:14:31,990
+capsule further detection boxes can be
+
+268
+00:14:31,990 --> 00:14:35,050
+added we use extra added collisions as a
+
+269
+00:14:35,050 --> 00:14:37,089
+death trigger and for current proximity
+
+270
+00:14:37,089 --> 00:14:39,160
+detection
+
+271
+00:14:39,160 --> 00:14:41,360
+the event graph of an animation
+
+272
+00:14:41,360 --> 00:14:44,030
+blueprint is the logic that rolls the
+
+273
+00:14:44,030 --> 00:14:45,980
+bounce states on behaviors according to
+
+274
+00:14:45,980 --> 00:14:47,390
+the events and function calls from the
+
+275
+00:14:47,390 --> 00:14:49,610
+navigation logic thus determining which
+
+276
+00:14:49,610 --> 00:14:53,330
+animation sequence is applied it is an
+
+277
+00:14:53,330 --> 00:14:55,430
+old graph and determines the animgraph
+
+278
+00:14:55,430 --> 00:14:59,750
+and blendspace functionality the central
+
+279
+00:14:59,750 --> 00:15:03,590
+core determines the pedestrian speed is
+
+280
+00:15:03,590 --> 00:15:06,620
+it is used for translation animation
+
+281
+00:15:06,620 --> 00:15:10,250
+sequences and those within a square
+
+282
+00:15:10,250 --> 00:15:12,710
+determines the orientation and whether
+
+283
+00:15:12,710 --> 00:15:19,430
+the pedestrian is a static or not the
+
+284
+00:15:19,430 --> 00:15:20,840
+aneema graphs animation blueprint is a
+
+285
+00:15:20,840 --> 00:15:22,790
+finit state machine is another hierarchy
+
+286
+00:15:22,790 --> 00:15:24,200
+where we can alter different clips and
+
+287
+00:15:24,200 --> 00:15:25,340
+define the interaction between each
+
+288
+00:15:25,340 --> 00:15:27,470
+other each transition has a specific
+
+289
+00:15:27,470 --> 00:15:29,210
+conditions to swap between States back
+
+290
+00:15:29,210 --> 00:15:30,670
+and forth
+
+291
+00:15:30,670 --> 00:15:32,780
+translation clips are implemented
+
+292
+00:15:32,780 --> 00:15:34,460
+through the blendspace tool orientation
+
+293
+00:15:34,460 --> 00:15:38,360
+clips are implemented directly these
+
+294
+00:15:38,360 --> 00:15:39,770
+tools bless different animation
+
+295
+00:15:39,770 --> 00:15:43,400
+sequences first read the active speed
+
+296
+00:15:43,400 --> 00:15:45,560
+information from navigations logic
+
+297
+00:15:45,560 --> 00:15:48,500
+through the event graph we use it to
+
+298
+00:15:48,500 --> 00:15:50,450
+blend the idle sequence with translation
+
+299
+00:15:50,450 --> 00:15:54,020
+sequences such as work and run right now
+
+300
+00:15:54,020 --> 00:15:55,940
+the pedestrians work from point to point
+
+301
+00:15:55,940 --> 00:15:59,570
+just to populate the nod each client
+
+302
+00:15:59,570 --> 00:16:01,580
+manages its own crowd so pedestrians of
+
+303
+00:16:01,580 --> 00:16:04,300
+different clients don't avoid each other
+
+304
+00:16:04,300 --> 00:16:06,650
+we have a small set of animations
+
+305
+00:16:06,650 --> 00:16:10,150
+restricted by the a vein graft and logic
+
+306
+00:16:10,150 --> 00:16:12,620
+we want to implement in the future new
+
+307
+00:16:12,620 --> 00:16:14,780
+events for pedestrians for example wait
+
+308
+00:16:14,780 --> 00:16:16,400
+for green traffic light at crosswalks
+
+309
+00:16:16,400 --> 00:16:18,950
+and custom animations sent from the
+
+310
+00:16:18,950 --> 00:16:22,370
+client also we are planning to add a
+
+311
+00:16:22,370 --> 00:16:23,720
+blue cast in the tool to be able to
+
+312
+00:16:23,720 --> 00:16:28,160
+handle big Maps finally we want to
+
+313
+00:16:28,160 --> 00:16:29,870
+improve our pedestrians visuals and
+
+314
+00:16:29,870 --> 00:16:31,670
+animation sequences we are studying an
+
+315
+00:16:31,670 --> 00:16:33,470
+approach from photography references or
+
+316
+00:16:33,470 --> 00:16:35,690
+3d scanned data also we want to
+
+317
+00:16:35,690 --> 00:16:39,050
+implement new animation States and
+
+318
+00:16:39,050 --> 00:16:40,880
+that's all about the destination
+
+319
+00:16:40,880 --> 00:16:42,440
+we hope the points covered have been
+
+320
+00:16:42,440 --> 00:16:44,420
+useful and don't miss that the slides
+
+321
+00:16:44,420 --> 00:16:45,930
+are accessible from the lobby
+
+322
+00:16:45,930 --> 00:16:48,620
+thank you
